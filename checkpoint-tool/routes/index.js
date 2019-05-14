@@ -48,8 +48,8 @@ router.get('/D3Tool', function(req, res, next) {
 });
 app.post("/D3Tool", function(req,res){
   
-  console.log(req.body.Xvalue);
-  console.log(req.body.Yvalue);
+  console.log(req.body);
+  console.log(req.body);
   /*
   var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
