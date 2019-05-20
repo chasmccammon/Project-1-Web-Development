@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var path = require('path');
 const mariadb = require ('mariadb');
@@ -8,6 +9,13 @@ var url = require('url');
 var fs = require('fs');
 var formidable = require('formidable');
 var formidablemiddleware = require('express-formidable');
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended:false})
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
 
 var app = express()
 
@@ -46,28 +54,54 @@ router.get('/', function(req, res, next) {
 router.get('/D3Tool', function(req, res, next) {
   res.sendfile(path.join(__dirname + '/d3.html'));
 });
-app.post("/D3Tool", function(req,res){
+
+router.get('/test', function(req, res, next) {
+  res.sendfile(path.join(__dirname + '/formtest.html'));
+
+});
+
+router.post("/posttest",urlencodedParser, function(req,res){
+//res.send(req.body);
+//console.log(req.body.dataid);
+
+var testdata = {
+  dataID: 3,
+  toolID: 1,
+  //studentID: 1,
+  labID: 1,
+  xValue: req.body.xvalue,
+  yValue: req.body.yvalue,
+  labcompleted: 1,
+}
+
+res.send(testdata);
+  var update = con.query('insert into Data2 set ?',testdata,function(err,result){});
+ update.sql;
   
-  console.log(req.body);
-  console.log(req.body);
-  /*
-  var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-     var testdata = {
-       dataID: 1,
-       toolID: 1,
-       labID: 1,
-       xValue: req.body.Xvalue,
-       yValue: req.body.Yvalue,
-       labCompleted: 1,
-       responseTime: 1,
-     }
-       var update = con.query('insert into Data set ?',testdata,function(err,result){});
-      update.sql;
+});
+
+router.post("/D3Toolsubmit",urlencodedParser, function(req,res){
+  
+  var testdata = {
+    dataID: 1,
+    toolID: 1,
+    studentID: 1,
+    labID: 1,
+    xValue: req.body.setX,
+    yValue: req.body.setY,
+    labcompleted: 1,
+  }
+  
+  res.send(testdata);
+    var update = con.query('insert into Data set ?',testdata,function(err,result){
+      if (err) throw err;
+      console.log("1 record inserted");
+    });
+   update.sql;
        
      
-      res.end();
-      */
+     
+      
     });
   
   
