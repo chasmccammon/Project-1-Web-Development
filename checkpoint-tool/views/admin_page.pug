@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  ul#messages
+
+  script(src="/socket.io/socket.io.js")
+  script(src="https://code.jquery.com/jquery-1.11.1.js")
+  script.
+    $(function () {
+        var socket = io();
+        
+        socket.on('user connected', function(msg){
+            $("#messages").find("#"+msg).remove();
+            $("#messages").find("#"+msg).remove();
+            $('#messages').append($('<li>').attr("id",msg).text(msg + " has connected"));
+            $('#messages').append($('<button>').attr("id",msg).click(function(){ $("#"+msg).css("color","black"); }).text("Clear Alert"));
+        });
+
+        socket.on('admin message', function(msg){
+            $("#"+msg).css("color","red");
+        });
+    });
