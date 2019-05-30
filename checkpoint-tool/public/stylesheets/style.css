@@ -1,6 +1,5 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.header {
+  padding: 30px;
 }
 
 a {
@@ -10,6 +9,11 @@ a {
 #graph
 {
   margin: 0 auto;
+  display: inline-block;
+}
+
+#survey {
+  text-align: center;
 }
 
 .axis path,
@@ -28,6 +32,11 @@ a {
 {
   stroke: #59ADEB;
   opacity: 0.5;
+}
+
+.x-label,
+.y-label {
+  font-size: 15px;
 }
 
 g path.domain
