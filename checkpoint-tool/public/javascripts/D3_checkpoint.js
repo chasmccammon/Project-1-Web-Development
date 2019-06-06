@@ -1,7 +1,7 @@
 // Set graph
 var width = 700,
 height = 700,
-padding = 20;
+padding = 25;
 
 // create an svg container
 var vis = d3.select("#graph")
