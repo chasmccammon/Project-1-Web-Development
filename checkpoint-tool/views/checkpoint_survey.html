@@ -34,16 +34,16 @@
 
     <!-- survey tool -->
     <div class="container" id="survey">
-        <h2>Survey 1</h2>
+        <h2>Lab #</h2>
         <div id="graph"></div>
         <form action="/D3Tool" enctype="multipart/form-data" method="post">
             <button id="skip" type="submit" value="skip" class="btn btn-primary">Skip</button>
-            <button id="next" type="submit" value="next" class="btn btn-primary">Next</button>
             <input type="hidden" name="Xvalue" value= userX>
             <input type="hidden" name="Yvalue" value = userY>
         </form>
+        <button id="next" type="submit" value="next" class="btn btn-primary" onclick="nextTool()">Next</button>
     </div>
-	
+    
     <script src='https://d3js.org/d3.v3.min.js'></script>
     <script src="../public/javascripts/D3_checkpoint.js"></script>
 </body>
