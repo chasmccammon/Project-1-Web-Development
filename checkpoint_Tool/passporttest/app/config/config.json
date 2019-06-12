@@ -1,0 +1,45 @@
+{
+ 
+    "development": {
+ 
+        "username": "mccacj3",
+ 
+        "password": "P@ssw0rd",
+ 
+        "database": "mccacj3_Checkpoint_Tool",
+ 
+        "host": "mariadb.ict.op.ac.nz",
+ 
+        "dialect": "mysql"
+ 
+    },
+ 
+    "test": {
+ 
+        "username": "",
+ 
+        "password": null,
+ 
+        "database": "",
+ 
+        "host": "",
+ 
+        "dialect": "mysql"
+ 
+    },
+ 
+    "production": {
+ 
+        "username": "",
+ 
+        "password": null,
+ 
+        "database": "",
+ 
+        "host": "127.0.0.1",
+ 
+        "dialect": "mysql"
+ 
+    }
+ 
+}
