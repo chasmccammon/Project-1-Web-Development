@@ -1,3 +1,32 @@
+// Tool Count
+var toolCount = 0;
+
+// Label Text
+var xLabelText = "xAxis";
+var yLabelText = "yAxis";
+
+// JSON
+var checkpointData = {
+    "labID" : null,
+    "tool" : [
+        {
+            "toolID" : 1,
+            "xValue" : null,
+            "yValue" : null
+        },
+        {
+            "toolID" : 2,
+            "xValue" : null,
+            "yValue" : null
+        },
+        {
+            "toolID" : 3,
+            "xValue" : null,
+            "yValue" : null
+        }
+    ]
+}
+
 // Set graph
 var width = 700,
 height = 700,
@@ -43,18 +72,23 @@ yAxisPlot.selectAll(".tick line")
             .attr("x1", (width - (2*padding))/2 * -1)
             .attr("x2", (width - (2*padding))/2 * 1);
 
-// axis labels
-var xLabel = vis.append("text")
-            .attr('class', 'x-label')
-            .attr('text-anchor', 'middle')
-            .attr('transform', 'translate('+ (width/2) +','+(height+')'))
-            .text("xAxisLabel");
+drawLabels();
 
-var yLabel = vis.append("text")
-            .attr('class', 'y-label')
-            .attr('text-anchor', 'middle')
-            .attr('transform', 'translate(' + 10 + ', ' + (height/2) + '), rotate(-90' + ')')
-            .text("yAxisLabel");
+function drawLabels() {
+    // axis labels
+    var xLabel = vis.append("text")
+    .attr('class', 'x-label')
+    .attr('text-anchor', 'middle')
+    .attr('transform', 'translate('+ (width/2) +','+(height+')'))
+    .text(xLabelText);
+
+    var yLabel = vis.append("text")
+    .attr('class', 'y-label')
+    .attr('text-anchor', 'middle')
+    .attr('transform', 'translate(' + 10 + ', ' + (height/2) + '), rotate(-90' + ')')
+    .text(yLabelText);
+
+}
 
 // circle size
 var circleSize = 15;
@@ -90,6 +124,9 @@ vis.on('click', function() {
 
     userX = userValue(xValue);
     userY = userValue(yValue);
+
+    checkpointData.tool[toolCount].xValue = userX;
+    checkpointData.tool[toolCount].yValue = userY;
 
     console.log('User X Value is: ' + userX);
     console.log('User Y Value is: ' + userY);
@@ -153,4 +190,19 @@ function userValue(z) {
         z = Math.floor(z);
     }
     return z;
+}
+
+// increments the tool count
+function nextTool() {
+    console.log("nextTool");
+    vis.selectAll(".click-circle").remove();
+    vis.selectAll(".ghost-circle").remove();
+    vis.selectAll(".x-label").remove();
+    vis.selectAll(".y-label").remove();
+    xLabelText = "NEXT LABEL" + toolCount;
+    yLabelText = "NEXT LABEL" + toolCount;
+    drawLabels();
+    toolCount++;
+    console.log(toolCount);
+    console.log(JSON.stringify(checkpointData));
 }
