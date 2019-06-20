@@ -9,13 +9,15 @@ Student Checkpoint Tool.
 
 All work should be done in the 'checkpoint-tool' directory
 
+
 ***************************************************
 * Node Modules + .gitignore                       *
 ***************************************************
 
-You don't want to push your node_modules folder to the repo. In your .gitignore make sure you include: /checkpoint-tool/node_modules/
+You don't want to push your node_modules folder to the repo. Make sure your .gitignore includes: /checkpoint-tool/node_modules/
 
 To install the node modules run: npm install
+
 
 ***************************************************
 * Running the app                                 *
@@ -24,6 +26,7 @@ To install the node modules run: npm install
 1) Open cmd in the checkpoint-tool directory
 2) Enter command: node app.js
 3) In the browser navigate to localhost:3000
+
 
 ***************************************************
 * Adding new html pages                           *
